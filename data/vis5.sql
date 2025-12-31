@@ -4,6 +4,7 @@ SELECT * FROM Sales.SalesOrderDetail
 SELECT * FROM Production.Product
 SELECT * FROM Production.ProductCategory
 
+--- Top 10 Products by Revenue and Quantity Sold
 SELECT TOP 10
     SUM(sod.OrderQty) AS QuantitySold,
     ROUND(SUM(sod.LineTotal), 2) AS TotalRevenue,

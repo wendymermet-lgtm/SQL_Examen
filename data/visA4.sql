@@ -1,16 +1,23 @@
 USE AdventureWorks2025
 
-SELECT * FROM Sales.SalesOrderHeader ORDER BY OrderDate DESC
-SELECT * FROM Sales.CurrencyRate
+SELECT * FROM Sales.SalesOrderHeader 
+SELECT * FROM Sales.Customer
  
---- Total Revenue by Month for the Last 13 Full Months
 SELECT 
-    ROUND(SUM(SubTotal), 2) AS TotalRevenue,
+  
     YEAR(OrderDate) AS [Year],
     RIGHT('00' + CAST(MONTH(OrderDate) AS varchar(2)), 2) AS [Month],
     FORMAT(OrderDate, 'yyyyMM') AS Period,
-    FORMAT(OrderDate, 'yyyy MMMM') AS PeriodName
-FROM Sales.SalesOrderHeader
+    FORMAT(OrderDate, 'yyyy MMMM') AS PeriodName,
+    SUM(CASE 
+        WHEN c.StoreID IS NULL THEN SubTotal
+        ELSE 0 END) AS RevenueIndividus,
+    SUM(CASE 
+        WHEN c.StoreID IS NOT NULL THEN SubTotal
+        ELSE 0 END) AS RevenueStores
+FROM Sales.SalesOrderHeader soh
+INNER JOIN Sales.Customer c ON soh.CustomerID = c.CustomerID
+
 WHERE OrderDate >= DATEADD(
         MONTH,
         -13,

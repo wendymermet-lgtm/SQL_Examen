@@ -7,6 +7,7 @@ SELECT * FROM Production.Product
 SELECT * FROM Sales.SalesOrderDetail
 WHERE LineTotal = 0
 
+--- Total Revenue and Quantity Sold by Product Category
 SELECT 
     pc.Name AS CategoryName,
     round(SUM(LineTotal),2) AS TotalRevenue,

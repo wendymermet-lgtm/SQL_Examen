@@ -4,6 +4,7 @@ SELECT * FROM Sales.SalesOrderHeader
 SELECT * FROM Sales.SalesTerritory
 SELECT * FROM Sales.Customer
 
+--- Average Revenue per Order by Customer Type and Sales Territory
 SELECT
     CONCAT(sst.Name, ' ', sst.CountryRegionCode) AS TerritoryName,
     ROUND(SUM(SubTotal), 2) AS TotalRevenue,

@@ -4,7 +4,7 @@ SELECT * FROM Sales.SalesOrderHeader
 SELECT * FROM Sales.SalesTerritory
 SELECT * FROM Sales.Customer
 
-
+--- Total Revenue and Unique Customers by Sales Territory
 SELECT
     CONCAT(sst.Name,' ',sst.CountryRegionCode) AS TerritoryName,
     ROUND(SUM(soh.SubTotal),2) AS TotalRevenue,

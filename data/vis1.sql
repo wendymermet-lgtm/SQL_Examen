@@ -4,6 +4,7 @@ SELECT * FROM Production.ProductCategory
 SELECT * FROM Production.ProductSubcategory
 SELECT * FROM Production.Product
 
+--- Total Products by Product Category
 SELECT 
     pc.Name AS CategoryName,
     COUNT(DISTINCT p.ProductID) AS TotalProducts
